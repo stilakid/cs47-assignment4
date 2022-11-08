@@ -33,7 +33,7 @@ export default function App() {
                     <Stack.Screen name="Song Details" component={SongScreen} />
                     <Stack.Screen name="Song Preview" component={PlaybackScreen} />
                 </Stack.Navigator>
-            </NavigationContainer> 
+            </NavigationContainer>
         );
     } else {
         return(

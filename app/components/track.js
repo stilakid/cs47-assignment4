@@ -1,18 +1,22 @@
-import { StyleSheet, View, Text, Image, Pressable } from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, Platform } from "react-native";
 import { Themes, Images } from "../../assets/Themes";
 import { Ionicons } from '@expo/vector-icons';
 
 export default function Track({num, name, image, duration, artist, album, navigation, external_url, preview_url}) {
-    return (
+  const icon_size = () => {
+    return Platform.isPad ? 30 : 20;
+  }  
+  
+  return (
         <Pressable style={styles.container} onPress={() => {
           navigation.navigate("Song Details", {external_url: external_url});
         }}>
             
             {/* <Text style={ [styles.text1, styles.column, styles.num] }>{num}</Text> */}
-            <Pressable style={[styles.text1, styles.column, styles.num]} onPress={() => {
+            <Pressable style={[styles.column, styles.play]} onPress={() => {
               navigation.navigate("Song Preview", {preview_url: preview_url});
             }}>
-                <Ionicons name="play-circle" size={20} color="green"/>
+                <Ionicons name="play-circle" size={icon_size()} color="green"/>
             </Pressable>
             <Image
                 style={styles.image}
@@ -53,9 +57,9 @@ const styles = StyleSheet.create({
     height: 65,
     flex: 2
   },
-  num: {
-    flex: 1/2
-    // width: 30
+  play: {
+    flex: 1/2,
+    alignItems: 'center'
   },
   songInfo: {
     flex: 4,
